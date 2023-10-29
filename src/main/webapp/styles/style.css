@@ -1,0 +1,93 @@
+#header{
+    background-color: #ccc;
+    font-family: fantasy;
+    height: 50px;
+    line-height: 50px;
+}
+td{
+    text-align: center;
+}
+#header_text{
+    vertical-align:middle;
+    margin-left: 20px;
+}
+#wrapper{
+    height: 423px;
+}
+#main{
+    background-color: #eee;
+    height: 400px;
+    margin-right: 600px;
+}
+#form_table{
+    background-color: #ddd;
+    float: right;
+    width: 580px;
+    height: 400px;
+}
+#result_table{
+    justify-content: center;
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid black;
+    margin: auto;
+    width: 90%;
+}
+#footer{
+    background-color: #ccc;
+    height: 500px;
+}
+#note{
+    font-size: 12px;
+}
+.validation_message{
+    text-align: center;
+}
+.input_values{
+    text-align: center;
+    margin: 10px;
+}
+.main_field{
+    margin: 10px;
+    border: 1px solid black;
+    font-size: 20px;
+}
+.center{
+    text-align: center;
+}
+.schedule{
+    margin: auto;
+    display: block;
+    color: black;
+}
+.figure{
+    fill: aqua;
+}
+button{
+    color: black;
+    background-color: #cccccc;
+    border-bottom-color: grey;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+}
+body{
+    font-family: Arial,serif;
+}
+button:hover{
+    background-color: slategrey;
+}
+input[type="checkbox"]{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+input[type="text"]{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+input::placeholder{
+    color: darkred;
+}
+line#division{
+    stroke: black;
+}
