@@ -1,8 +1,10 @@
 #header{
-    background-color: #ccc;
-    font-family: fantasy;
+    background-color: #2b2b36;
+    font-family: monospace;
     height: 50px;
     line-height: 50px;
+    color: chartreuse;
+    display: flex;
 }
 td{
     text-align: center;
@@ -15,12 +17,12 @@ td{
     height: 423px;
 }
 #main{
-    background-color: #eee;
+    background-color: #2b2b36;
     height: 400px;
     margin-right: 600px;
 }
 #form_table{
-    background-color: #ddd;
+    background-color: #2b2b36;
     float: right;
     width: 580px;
     height: 400px;
@@ -28,13 +30,13 @@ td{
 #result_table{
     justify-content: center;
     position: relative;
-    background-color: #ffffff;
+    background-color: #2b2b36;
     border: 1px solid black;
     margin: auto;
     width: 90%;
 }
 #footer{
-    background-color: #ccc;
+    background-color: #2b2b36;
     height: 500px;
 }
 #note{
@@ -51,32 +53,30 @@ td{
     margin: 10px;
     border: 1px solid black;
     font-size: 20px;
+    font-family: monospace;
 }
 .center{
     text-align: center;
 }
-.schedule{
-    margin: auto;
-    display: block;
-    color: black;
-}
 .figure{
     fill: aqua;
 }
-button{
-    color: black;
-    background-color: #cccccc;
-    border-bottom-color: grey;
-    outline: none;
-    cursor: pointer;
-    user-select: none;
+.graph{
+    width: 100%; /* Установите ширину и высоту контейнера */
+    height: 400px;
+    text-align: center; /* Выравнивание по центру по горизонтали */
+    display: flex;
+    justify-content: center; /* Выравнивание по центру по вертикали */
+    align-items: center;
+}
+canvas{
+    padding: 20%;
+    margin: 20%;
 }
 body{
     font-family: Arial,serif;
 }
-button:hover{
-    background-color: slategrey;
-}
+
 input[type="checkbox"]{
     margin-top: 2%;
     margin-bottom: 2%;

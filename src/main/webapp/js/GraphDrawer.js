@@ -1,6 +1,6 @@
 window.addEventListener("load", () =>{
     const canvas = document.querySelector("#canvas");
-    let radiusInput = document.querySelector(".radius");
+    let radiusInput = document.querySelector(".r");
     let r = radiusInput.value;
     const ctx = canvas.getContext("2d");
     const side = canvas.width;
@@ -40,7 +40,7 @@ window.addEventListener("load", () =>{
 
     function drawGraph(r){
         // график 1 четверть
-        ctx.fillStyle = "#00b4d8";
+        ctx.fillStyle = "#4f9947";
         const radius = side / 3 * (r / k);
         const startAngle = Math.PI * 1.5;
         const endAngle = Math.PI * 2;
@@ -197,3 +197,4 @@ window.addEventListener("load", () =>{
         ctx.closePath();
     }
 })
+
