@@ -33,7 +33,7 @@ h2 {
 
 input[type="text"] {
     background-color: #1f1f1f; /* Цвет поля ввода */
-    color: #2b2b36; /* Цвет текста в поле ввода */
+    color: #ffffff; /* Цвет текста в поле ввода */
     border: 2px solid #6ad341; /* Цвет границы */
     border-radius: 5px; /* Закругленные края поля ввода */
     padding: 8px;

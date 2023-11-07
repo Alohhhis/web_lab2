@@ -34,15 +34,11 @@
   </style>
 
 <header>
-  <!-- Заголовок -->
   <h1> Докшина Алёна, P3221, Вариант №2178</h1>
 </header>
 <main>
   <section id="data-input">
-    <!-- Заголовок блока ввода данных -->
     <h2>Ввод данных:</h2>
-
-    <!-- Блоки для ввода данных -->
     <div class="input-block">
       <form id="forms" method="get">
         <div class="input_values">
@@ -86,7 +82,7 @@
           <label for="y_value">Введите Y:</label> <br>
           <br>
           <input style="margin-bottom: 10px" type="text" name="y_coordinate" class="y" id="y_value"
-                 placeholder="(-3...5)*" autocomplete="off"><br>
+                 placeholder="[-3..5]" autocomplete="off"><br>
           <span id="note">*Происходит округление значений до 2 знаков после запятой</span>
         </div>
         <br>
@@ -98,7 +94,7 @@
           <label for="r_value_1" class="r_l">1</label>
 
           <input type="radio" name="r_coordinate" id="r_value_1.5" class="r" value="1.5">
-          <label for="r_value_1.5"class="r_l">1.5</label>
+          <label for="r_value_1.5" class="r_l">1.5</label>
 
           <input type="radio" name="r_coordinate" id="r_value_2" class="r" value="2">
           <label for="r_value_2" class="r_l">2</label>
@@ -110,15 +106,12 @@
           <label for="r_value_3" class="r_l">3</label>
         </div>
 
-
-
         <div class="input_values">
           <button type="submit" class="submit">Отправить</button>
           <button type="reset" class="reset">Сбросить</button>
         </div>
 
-        <div class="validation_message">
-
+        <div id="message" class="validation_message">
         </div>
       </form>
     </div>
@@ -131,8 +124,8 @@
     </div>
   </section>
 </main>
-<script src="js/index/updater.js"></script>
-<script src="js/ErrorMessage.js"></script>
+<!--<script src="js/index/updater.js"></script>
+<script src="js/ErrorMessage.js"></script>-->
 <script src="js/GraphDrawer.js"></script>
 </body>
 </html>
