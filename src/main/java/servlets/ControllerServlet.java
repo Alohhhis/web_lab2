@@ -14,9 +14,9 @@ public class ControllerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String x = req.getParameter("X");
-        String y = req.getParameter("Y");
-        String r = req.getParameter("R");
+        String x = req.getParameter("x");
+        String y = req.getParameter("y");
+        String r = req.getParameter("r");
         if (x != null && y!=null && r!=null && validateCoordinates(Integer.parseInt(x), Double.parseDouble(y), Double.parseDouble(r))){
             getServletContext().getNamedDispatcher("AreaCheckServlet").forward(req, resp);
         }
