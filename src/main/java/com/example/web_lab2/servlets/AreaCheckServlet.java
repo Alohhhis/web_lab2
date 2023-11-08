@@ -1,6 +1,6 @@
-package servlets;
+package com.example.web_lab2.servlets;
 
-import Model.Data;
+import com.example.web_lab2.model.Data;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
-import static java.lang.Math.sqrt;
+import static com.example.web_lab2.view.Result.renderView;
 
 @WebServlet(name = "AreaCheckerServlet", value = "/AreaCheckerServlet")
 public class AreaCheckServlet extends HttpServlet {
@@ -55,7 +55,7 @@ public class AreaCheckServlet extends HttpServlet {
         synchronized (resultList) {
             resultList.add(data);
         }
-      //  renderView(resp, ctx, data);
+        renderView(resp, ctx, data);
     }
 
     public boolean checkSquare(int x, double y, double r) {

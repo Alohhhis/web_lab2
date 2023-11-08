@@ -1,8 +1,7 @@
-package Model;
+package com.example.web_lab2.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.Objects;
 
 public class Data implements Serializable {
