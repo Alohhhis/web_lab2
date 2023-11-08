@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.web_lab2.model.Data" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -12,7 +13,7 @@
 </head>
 <body>
 <%
-    List<RequestData> table = (List<RequestData>) session.getAttribute("table");
+    List<Data> table = (List<Data>) session.getAttribute("table");
 %>
 <div id="header" class="main_field">
         <span id="header_text">
@@ -31,16 +32,16 @@
         <th>Результат</th>
         </thead>
         <tbody>
-        <% for(RequestData requestData: table) { %>
-        <tr class='columns'>
-            <td><%=requestData.getArea().getX()%></td>
-            <td><%=requestData.getArea().getY()%></td>
-            <td><%=requestData.getArea().getR()%></td>
-            <td><%=requestData.getExecutionTime()%></td>
-            <td><%=requestData.getCurrentTime()%></td>
-            <td><%=requestData.isResult()%></td>
-        </tr>
-        <% } %>
+        <c:forEach var="result" items="${resultList}">
+            <tr>
+                <td>${result.x}</td>
+                <td>${result.y}</td>
+                <td>${result.r}</td>
+                <td>${result.calculatedAt}</td>
+                <td>${result.res ? 'попал' : 'мимо'}</td>
+                <td>${result.calculationTime}</td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
     <form id="forms" class="center" action="index.jsp">
