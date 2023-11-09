@@ -13,11 +13,12 @@
 </head>
 <body>
 <%
-    List<Data> table = (List<Data>) session.getAttribute("table");
+    //Todo брать нужное значение общего объекта
+    // List<Data> table = (List<Data>) session.getAttribute("table");
 %>
 <div id="header" class="main_field">
         <span id="header_text">
-            Аллаяров Игорь, P32121, Вариант №1101
+            Докшина Алёна P3221, вариант  №2178
         </span>
 </div>
 <div id="wrapper" class="main_field">
@@ -48,6 +49,6 @@
         <button>Вернуться на главную страницу</button>
     </form>
 </div>
-<script src="js/result/dot.js"></script>
+
 </body>
 </html>

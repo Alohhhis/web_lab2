@@ -23,7 +23,7 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String ctx = this.getServletContext().getContextPath();
         final long start = System.currentTimeMillis();
         final String x = req.getParameter("x");

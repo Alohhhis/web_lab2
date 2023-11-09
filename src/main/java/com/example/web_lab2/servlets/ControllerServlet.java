@@ -13,7 +13,7 @@ public class ControllerServlet extends HttpServlet {
     double[] rArray = {1, 1.5, 2, 2.5, 3};
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String x = req.getParameter("x");
         String y = req.getParameter("y");
         String r = req.getParameter("r");
@@ -26,6 +26,7 @@ public class ControllerServlet extends HttpServlet {
         boolean validY = -3 <= y && y <= 5;
         boolean validR = false;
         for (int i = 0; i < rArray.length; i++) {
+            //TODO replace ('.',',')
             if (rArray[i] == r) {
                 validR = true;
                 break;

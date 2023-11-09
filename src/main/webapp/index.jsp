@@ -15,8 +15,11 @@
     <section id="data-input">
       <h2>Ввод данных:</h2>
       <div class="input-block">
+        <div id="message">
+        </div>
         <form id="forms" method="get">
           <div class="input_values">
+
             <label for="x">Координата X:</label>
             <div id="x_select">
               <select name="x" id="x" required>
@@ -47,27 +50,26 @@
             <div class="input_values">Введите R:<br>
               <br>
               <input type="radio" name="r_coordinate" id="r_value_1" class="r" value="1">
-              <label for="r_value_1">1</label>
+              <label for="r_value_1" class="r">1</label>
 
               <input type="radio" name="r_coordinate" id="r_value_1.5" class="r" value="1.5">
-              <label for="r_value_1.5">1.5</label>
+              <label for="r_value_1.5" class="r">1.5</label>
 
               <input type="radio" name="r_coordinate" id="r_value_2" class="r" value="2">
-              <label for="r_value_2">2</label>
+              <label for="r_value_2" class="r">2</label>
 
               <input type="radio" name="r_coordinate" id="r_value_2.5" class="r" value="2.5">
-              <label for="r_value_2.5">2.5</label>
+              <label for="r_value_2.5" class="r">2.5</label>
 
               <input type="radio" name="r_coordinate" id="r_value_3" class="r" value="3">
-              <label for="r_value_3">3</label>
+              <label for="r_value_3" class="r">3</label>
             </div>
             <div class="input_values">
               <button type="submit" class="submit">Отправить</button>
-              <button type="reset" class="reset">Сбросить</button>
+              <button type="reset" class="reset" >Сбросить</button>
             </div>
 
-            <div id="message" class="validation_message">
-            </div>
+
           </div>
         </form>
       </div>
@@ -79,8 +81,49 @@
         <canvas class="canvas" id="canvas" width="400" height="400"> </canvas>
       </div>
     </section>
+    <table class="result">
+      <thead>
+      <tr>
+        <th>X</th>
+        <th>Y</th>
+        <th>R</th>
+        <th>Текущее время</th>
+        <th>Статус</th>
+        <th>Время выполнения скрипта, нс</th>
+      </tr>
+      </thead>
+      <thbody>
+        <c:forEach var="result" items="${resultList}">
+          <tr>
+            <td>${result.x}</td>
+            <td>${result.y}</td>
+            <td>${result.r}</td>
+            <td>${result.calculatedAt}</td>
+            <td>${result.res ? 'попал' : 'мимо'}</td>
+            <td>${result.calculationTime}</td>
+          </tr>
+        </c:forEach>
+      </thbody>
+    </table>
+    </div>
   </main>
+  <script>const ctx = "${pageContext.request.contextPath}";</script>
+  <script type="text/javascript">
+    var resultList = [];
 
+    <c:forEach var="result" items="${resultList}">
+    var item = {
+      x: ${result.x},
+      y: ${result.y},
+      r: ${result.r},
+      result: ${result.res},
+      calculationTime: ${result.calculationTime},
+      calculatedAt: "${result.calculatedAt}"
+    };
+    resultList.push(item);
+    drawPoint(${result.x}, ${result.y}, ${result.r});
+    </c:forEach>
+  </script>
 <script src="js/GraphDrawer.js"></script>
 <script src="js/validator.js"></script>
 </body>

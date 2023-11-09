@@ -15,7 +15,7 @@ public class Result {
         out.println("<head>");
         out.println("    <meta http-equiv=\"Content-Type\" content=\"text/html\" charset=\"UTF-8\" />");
         out.println("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
-        out.println("    <link rel=\"stylesheet\" href=\"" + ctx + "/styles/style.css\">");
+        out.println("    <link rel=\"stylesheet\" href=\"" + ctx + "/styles/index.css\">");
         out.println("    <title>Результаты</title>");
         out.println("</head>");
         out.println("<body>");

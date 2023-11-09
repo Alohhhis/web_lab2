@@ -99,7 +99,7 @@ line#division{
 }
 
 /* Стили для лейблов радиокнопок */
-.input_values label.r_l {
+.input_values label.r {
     display: inline-block;
     width: 30px;
     height: 30px;
@@ -114,7 +114,7 @@ line#division{
 }
 
 /* Стиль при наведении на радиокнопку */
-.input_values label.r_l:hover {
+.input_values label.r:hover {
     background-color: #007bff;
     color: #fff;
 }
