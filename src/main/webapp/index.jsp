@@ -8,7 +8,7 @@
   <meta name="author" content="Alohhis"/>
   <title>Lab 2</title>
    <link rel="stylesheet" href="styles/index.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" async></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </head>
 <body>
@@ -68,7 +68,7 @@
               <input type="radio" name="r_coordinate" id="r_value_3" class="r" value="3">
               <label for="r_value_3" class="r">3</label>
             </div>
-            <div class="input_values" id="buttons-table">
+            <div class="input_values" id="buttons-div">
               <button type="submit" class="submit">Отправить</button>
               <button type="reset" class="reset" >Сбросить</button>
             </div>

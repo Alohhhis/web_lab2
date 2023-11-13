@@ -1,11 +1,10 @@
 package com.example.web_lab2.servlets;
 
-import com.example.web_lab2.model.Data;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+
+import com.example.web_lab2.model.Data;
 
 import java.io.IOException;
 

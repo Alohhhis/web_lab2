@@ -11,20 +11,21 @@ document.getElementById('forms').addEventListener('submit', function (e) {
 
 function send(x, y, r) {
     $.ajax({
-        type: "GET",
-        url: "/ControllerServlet",
-        async: false,
-        data: {"x": x, "y": y, "r": r},
-        success: function (data) {
-            window.location.replace("./result.jsp")
-        }, error: function (xhr, textStatus, err) {
-            showError(document.getElementById('buttons-table'), "readyState: " + xhr.readyState + "\n" +
-                "responseText: " + xhr.responseText + "\n" +
-                "status: " + xhr.status + "\n" +
-                "text status: " + textStatus + "\n" +
-                "error: " + err);
+            type: "GET",
+            url: "/web_lab2/ControllerServlet?x=-2&y=-1&r=1",
+            async: false,
+            data: {"x": x, "y": y, "r": r},
+            success: function (data) {
+                window.location.replace("./result.jsp")
+            }, error: function (xhr, textStatus, err) {
+                showError(document.getElementById('buttons-div'), "readyState: " + xhr.readyState + "\n" +
+                    "responseText: " + xhr.responseText + "\n" +
+                    "status: " + xhr.status + "\n" +
+                    "text status: " + textStatus + "\n" +
+                    "error: " + err);
+            }
         }
-    })
+    )
 }
 
 function showError(element, message) {
