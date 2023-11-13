@@ -2,7 +2,7 @@ document.getElementById('forms').addEventListener('submit', function (e) {
     e.preventDefault();
     let x = document.getElementById('x');
     let y = document.getElementById('y');
-    let r = document.querySelectorAll('input[class="r"]:checked')[0];
+    let r = document.querySelectorAll('input[type="radio"]:checked')[0];
 
     if (validate(x, y, r)) {
         send(x.value, y.value, r.value);
@@ -37,7 +37,7 @@ function showError(element, message) {
     element.parentNode.insertBefore(errorElement, element.nextSibling);
     setTimeout(function () {
         errorElement.remove();
-    }, 2000);
+    }, 9999999999999999);
 }
 
 function validate(x, y, r) {
@@ -59,16 +59,6 @@ function validate(x, y, r) {
         showError(y, 'Значение Y должно быть числом в пределах от -3 до 5.');
         return false;
     }
-    /*
-    const rValues = [1, 1.5, 2, 2.5, 3];
-    const rNormalized = r.toString
-    ().replace(',', '.');
-    if (!rValues.includes(parseFloat(rNormalized))) {
-        showError(r, 'Значение R должно быть одним из следующих чисел: 1, 1.5, 2, 2.5, 3.');
-        return false;
-    }
-
-     */
     return true;
 }
 

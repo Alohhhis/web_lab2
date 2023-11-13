@@ -33,7 +33,7 @@ window.addEventListener("load", () =>{
     })
 
     document.getElementById("radius").addEventListener('change', function () {
-        let r = document.getElementById("radius").value;
+        let r = document.getElementById("r").value;
         ctx.clearRect(2,2, side/1.01, side/1.01);
         drawGraph(r);
     })

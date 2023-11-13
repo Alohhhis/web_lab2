@@ -1,37 +1,34 @@
 package com.example.web_lab2.servlets;
 
+import com.example.web_lab2.model.Data;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
 @WebServlet(name = "ControllerServlet", value = "/ControllerServlet")
 public class ControllerServlet extends HttpServlet {
-    double[] rArray = {1, 1.5, 2, 2.5, 3};
-
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String x = req.getParameter("x");
-        String y = req.getParameter("y");
-        String r = req.getParameter("r");
-        if (x != null && y!=null && r!=null && validateCoordinates(Integer.parseInt(x), Double.parseDouble(y), Double.parseDouble(r))){
-            getServletContext().getNamedDispatcher("AreaCheckServlet").forward(req, resp);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            // Создаем экземпляр Data и устанавливаем значения из запроса
+            Data data = new Data();
+            data.setX(Integer.parseInt(request.getParameter("x")));
+            data.setY(Double.parseDouble(request.getParameter("y")));
+            data.setR(Double.parseDouble(request.getParameter("r")));
+
+            // Добавляем data в атрибуты запроса
+            request.setAttribute("data", data);
+
+            // Перенаправляем запрос для обработки
+            getServletContext().getRequestDispatcher("/check").forward(request, response);
+        } catch (Exception e) {
+            // В случае ошибки перенаправляем на страницу ошибки
+            getServletContext().setAttribute("error", e.getMessage());
+            request.getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
         }
-    }
-    private boolean validateCoordinates(int x, double y, double r) {
-        boolean validX = -5 <= x && x <= 3;
-        boolean validY = -3 <= y && y <= 5;
-        boolean validR = false;
-        for (int i = 0; i < rArray.length; i++) {
-            //TODO replace ('.',',')
-            if (rArray[i] == r) {
-                validR = true;
-                break;
-            }
-        }
-        return validX && validY && validR;
     }
 }

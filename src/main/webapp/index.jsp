@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -6,6 +8,8 @@
   <meta name="author" content="Alohhis"/>
   <title>Lab 2</title>
    <link rel="stylesheet" href="styles/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" async></script>
+
 </head>
 <body>
   <header>
@@ -64,7 +68,7 @@
               <input type="radio" name="r_coordinate" id="r_value_3" class="r" value="3">
               <label for="r_value_3" class="r">3</label>
             </div>
-            <div class="input_values">
+            <div class="input_values" id="buttons-table">
               <button type="submit" class="submit">Отправить</button>
               <button type="reset" class="reset" >Сбросить</button>
             </div>
@@ -81,49 +85,10 @@
         <canvas class="canvas" id="canvas" width="400" height="400"> </canvas>
       </div>
     </section>
-    <table class="result">
-      <thead>
-      <tr>
-        <th>X</th>
-        <th>Y</th>
-        <th>R</th>
-        <th>Текущее время</th>
-        <th>Статус</th>
-        <th>Время выполнения скрипта, нс</th>
-      </tr>
-      </thead>
-      <thbody>
-        <c:forEach var="result" items="${resultList}">
-          <tr>
-            <td>${result.x}</td>
-            <td>${result.y}</td>
-            <td>${result.r}</td>
-            <td>${result.calculatedAt}</td>
-            <td>${result.res ? 'попал' : 'мимо'}</td>
-            <td>${result.calculationTime}</td>
-          </tr>
-        </c:forEach>
-      </thbody>
-    </table>
+
     </div>
   </main>
   <script>const ctx = "${pageContext.request.contextPath}";</script>
-  <script type="text/javascript">
-    var resultList = [];
-
-    <c:forEach var="result" items="${resultList}">
-    var item = {
-      x: ${result.x},
-      y: ${result.y},
-      r: ${result.r},
-      result: ${result.res},
-      calculationTime: ${result.calculationTime},
-      calculatedAt: "${result.calculatedAt}"
-    };
-    resultList.push(item);
-    drawPoint(${result.x}, ${result.y}, ${result.r});
-    </c:forEach>
-  </script>
 <script src="js/GraphDrawer.js"></script>
 <script src="js/validator.js"></script>
 </body>
