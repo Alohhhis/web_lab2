@@ -17,7 +17,7 @@ window.addEventListener("load", () =>{
         let x = event.offsetX;
         let y = event.offsetY;
 
-        ctx.fillStyle = "#fe6262";
+        ctx.fillStyle = "#6ba8d3";
         ctx.beginPath();
         ctx.arc(x,y,4,0,Math.PI * 2);
         ctx.fill();
@@ -32,7 +32,7 @@ window.addEventListener("load", () =>{
 
     })
 
-    document.getElementById("radius").addEventListener('change', function () {
+    document.getElementById("r").addEventListener('change', function () {
         let r = document.getElementById("r").value;
         ctx.clearRect(2,2, side/1.01, side/1.01);
         drawGraph(r);

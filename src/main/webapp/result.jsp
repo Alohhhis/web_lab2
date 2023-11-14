@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Лабораторная работа №2</title>
-    <link rel="stylesheet" type="text/css" href="resources/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
 <%

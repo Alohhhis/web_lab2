@@ -9,10 +9,12 @@ document.getElementById('forms').addEventListener('submit', function (e) {
     }
 });
 
+
+
 function send(x, y, r) {
     $.ajax({
             type: "GET",
-            url: "/web_lab2/ControllerServlet?x=-2&y=-1&r=1",
+            url: "ControllerServlet",
             async: false,
             data: {"x": x, "y": y, "r": r},
             success: function (data) {
@@ -27,6 +29,8 @@ function send(x, y, r) {
         }
     )
 }
+
+
 
 function showError(element, message) {
     const errorElement = document.createElement('div');
