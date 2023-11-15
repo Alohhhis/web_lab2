@@ -30,8 +30,6 @@ function send(x, y, r) {
     )
 }
 
-
-
 function showError(element, message) {
     const errorElement = document.createElement('div');
     errorElement.classList.add('error-message');

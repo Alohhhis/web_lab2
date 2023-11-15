@@ -16,6 +16,7 @@
     //Todo брать нужное значение общего объекта
     // List<Data> table = (List<Data>) session.getAttribute("table");
 %>
+
 <div id="header" class="main_field">
         <span id="header_text">
             Докшина Алёна P3221, вариант  №2178
@@ -23,7 +24,7 @@
 </div>
 <div id="wrapper" class="main_field">
     <h2 class="center">Таблица параметров</h2>
-    <table id="result_table" rules="all">
+    <table id="result_table" >
         <thead>
         <th>Значение X</th>
         <th>Значение Y</th>
@@ -39,7 +40,7 @@
                 <td>${result.y}</td>
                 <td>${result.r}</td>
                 <td>${result.calculatedAt}</td>
-                <td>${result.res ? 'попал' : 'мимо'}</td>
+                <td>${result.res ? 'убил' : 'мимо'}</td>
                 <td>${result.calculationTime}</td>
             </tr>
         </c:forEach>
