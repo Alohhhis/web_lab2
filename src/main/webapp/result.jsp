@@ -3,22 +3,55 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <script src="js/redirect.js"></script>
+
     <title>Result Page</title>
     <style>
+        body {
+            background-color: #282c34;
+            color: #abb2bf;
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
         table {
-            width: 50%;
-            border-collapse: collapse;
+            width: 80%;
             margin-top: 20px;
+            border: 2px solid #61dafb;
+            border-collapse: collapse;
+            background-color: #282c34;
+            color: #abb2bf;
         }
 
         th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
+            border: 2px solid #61dafb;
+            padding: 12px;
+            text-align: center;
+            color: #abb2bf;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #1d1f21;
+            color: #61dafb;
+        }
+
+        h2, p {
+            color: #61dafb;
+        }
+
+        .return-button {
+            background-color: #1d1f21;
+            color: #61dafb;
+            border: 2px solid #61dafb;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .return-button:hover {
+            background-color: #61dafb;
+            color: #282c34;
         }
     </style>
 </head>
@@ -55,6 +88,7 @@
     <% } %>
     </tbody>
 </table>
+<button class="return-button" onclick="redirectToIndex()">Back to Index</button>
 <% } else { %>
 <p>No results available.</p>
 <% } %>

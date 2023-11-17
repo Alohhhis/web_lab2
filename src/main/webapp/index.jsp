@@ -105,7 +105,7 @@
             <td>${result.x}</td>
             <td>${result.y}</td>
             <td>${result.r}</td>
-            <td>${result.result ? 'Убил' : 'Мимо'}</td>
+            <td>${result.res ? 'Убил' : 'Мимо'}</td>
             <td>${result.calculatedAt}</td>
             <td>${result.calculationTime}</td>
           </tr>
@@ -123,12 +123,12 @@
       x: ${result.x},
       y: ${result.y},
       r: ${result.r},
-      result: ${result.result},
+      result: ${result.res},
       calculationTime: ${result.calculationTime},
       calculatedAt: "${result.calculatedAt}"
     };
     resultList.push(item);
-    drawPoint(${result.x}, ${result.y}, ${result.result});
+    drawPoint(${result.x}, ${result.y}, ${result.res});
     </c:forEach>
   </script>
 <script src="js/GraphDrawer.js"></script>
