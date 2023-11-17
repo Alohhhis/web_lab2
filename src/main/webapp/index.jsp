@@ -128,10 +128,10 @@
       calculatedAt: "${result.calculatedAt}"
     };
     resultList.push(item);
-    drawPoint(${result.x}, ${result.y}, ${result.res});
     </c:forEach>
   </script>
 <script src="js/GraphDrawer.js"></script>
 <script src="js/validator.js"></script>
+
 </body>
 </html>
