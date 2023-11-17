@@ -1,44 +1,63 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.web_lab2.model.Data" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Page</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-    <title>Результаты</title>
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-<div id="header" class="blurred-container round-container margin">
-    <h1>Результат: ${result.res ? 'Убил' : 'Мимо'}</h1>
-</div>
-<div id="result-table-container" class="blurred-container margin">
-    <table id="result_table" >
-        <thead>
-        <th>Значение X</th>
-        <th>Значение Y</th>
-        <th>Значение R</th>
-        <th>Время выполнения</th>
-        <th>Текущее время</th>
-        <th>Результат</th>
-        </thead>
-        <tbody>
-        <c:forEach var="result" items="${resultList}">
-            <tr>
-                <td>${result.x}</td>
-                <td>${result.y}</td>
-                <td>${result.r}</td>
-                <td>${result.calculatedAt}</td>
-                <td>${result.calculationTime}</td>
-                <td>${result.res ? 'убил' : 'мимо'}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</div>
-<div class="blurred-container round-container fit-content-container margin">
-    <form id="forms" class="center" >
-        <button onclick="redirectToIndex()">Вернуться на главную страницу</button>
-    </form>
-</div>
+
+<h2>Result Page</h2>
+
+<%
+    List<Data> resultList = (List<Data>) request.getServletContext().getAttribute("resultList");
+%>
+
+<% if (resultList != null && !resultList.isEmpty()) { %>
+<table>
+    <thead>
+    <tr>
+        <th>X</th>
+        <th>Y</th>
+        <th>R</th>
+        <th>Result</th>
+        <th>Calculation Time (ns)</th>
+        <th>Calculated At</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for (Data data : resultList) { %>
+    <tr>
+        <td><%= data.getX() %></td>
+        <td><%= data.getY() %></td>
+        <td><%= data.getR() %></td>
+        <td><%= data.getRes() %></td>
+        <td><%= data.getCalculationTime() %></td>
+        <td><%= data.getCalculatedAt() %></td>
+    </tr>
+    <% } %>
+    </tbody>
+</table>
+<% } else { %>
+<p>No results available.</p>
+<% } %>
+
 </body>
 </html>
