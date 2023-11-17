@@ -10,24 +10,32 @@ import java.io.IOException;
 
 @WebServlet(name = "ControllerServlet", value = "/ControllerServlet")
 public class ControllerServlet extends HttpServlet {
+    double[] rArray = {1, 1.5, 2, 2.5, 3};
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            // Создаем экземпляр Data и устанавливаем значения из запроса
-            Data data = new Data();
-            data.setX(Integer.parseInt(request.getParameter("x")));
-            data.setY(Double.parseDouble(request.getParameter("y")));
-            data.setR(Double.parseDouble(request.getParameter("r")));
-
-            // Добавляем data в атрибуты запроса
-            request.setAttribute("data", data);
-
-            // Перенаправляем запрос для обработки
-            getServletContext().getRequestDispatcher("/check").forward(request, response);
-        } catch (Exception e) {
-            // В случае ошибки перенаправляем на страницу ошибки
-            getServletContext().setAttribute("error", e.getMessage());
-            request.getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+        String forwardPath = getServletContext().getContextPath();
+        // Валидация точки
+        String x = request.getParameter("x");
+        String y = request.getParameter("y");
+        String r = request.getParameter("r");
+        if (x != null && y != null && r != null
+                && validateCoordinates(Integer.parseInt(x), Double.parseDouble(y),Double.parseDouble(r)))
+        {
+            forwardPath = this.getServletContext().getContextPath() + "/check?x=" + request.getParameter("x")
+                    + "&y=" + request.getParameter("y") + "&r=" + request.getParameter("r");
         }
+        response.sendRedirect(forwardPath);
+        }
+    private boolean validateCoordinates(int x, double y, double r){
+        boolean validX = -5 <= x && x <= 5;
+        boolean validY = -4 <= y && y <= 4;
+        boolean validR = false;
+        for (int i = 0; i < rArray.length; i++){
+            if (rArray[i] == r){
+                validR = true;
+                break;
+            }
+        }
+        return validX && validY && validR;
     }
 }

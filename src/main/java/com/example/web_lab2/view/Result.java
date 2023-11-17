@@ -16,12 +16,11 @@ public class Result {
         out.println("<head>");
         out.println("    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
         out.println("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
-        out.println("    <link rel=\"stylesheet\" href=\"" + ctx + "/styles/index.css\">");
         out.println("    <title>Результаты</title>");
         out.println("</head>");
         out.println("<body>");
         out.println("    <div id=\"header\" class=\"blurred-container round-container margin\">");
-        out.println("        <h1>Результат: " + (data.isRes() ? "попал" : "мимо") + "</h1>");
+        out.println("        <h1>Результат: " + (data.getRes() ? "Убил" : "мимо") + "</h1>");
         out.println("    </div>");
         out.println("    <div id=\"result-table-container\" class=\"blurred-container margin\">");
         out.println("        <table>");

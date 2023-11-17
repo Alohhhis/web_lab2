@@ -20,77 +20,63 @@ import static com.example.web_lab2.view.Result.renderView;
 
 @WebServlet(name = "AreaCheckServlet", value = "/check")
 public class AreaCheckServlet extends HttpServlet {
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-    private final List<Double> validRValues = Arrays.asList(1.0, 1.5, 2.0, 2.5, 3.0);
+    public List<Data> getResultList() {
+        return resultList;
+    }
+
+    private List<Data> resultList;
+    //private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    //private final List<Double> validRValues = Arrays.asList(1.0, 1.5, 2.0, 2.5, 3.0);
 
     @Override
     public void init() throws ServletException {
-        // Инициализация списка результатов в контексте приложения
-        List<Data> resultList = new LinkedList<>();
+        resultList = new LinkedList<>();
         getServletContext().setAttribute("resultList", resultList);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            final long startExec = System.nanoTime();
+            final String ctx = this.getServletContext().getContextPath();
             String strX = request.getParameter("x");
             String strY = request.getParameter("y");
             String strR = request.getParameter("r");
 
-            // Проверка на длину строк
-            if (!(strX.length() <= 10 && strY.length() <= 10 && strR.length() <= 10)) {
-                return;
-            }
 
             // Парсинг значений
             int x = Integer.parseInt(strX);
             double y = Double.parseDouble(strY);
             double r = Double.parseDouble(strR);
-
-            // Валидация
-            if (isValidX(x) && isValidY(y) && isValidR(r)) {
-                long startTime = System.nanoTime();
-
-                String result = checkout(x, y, r) ? "убил" : "мимо";
-                LocalTime time = LocalTime.now();
-                String currentTime = time.format(formatter);
-                String scriptTime = String.format("%.2f", (double) (System.nanoTime() - startTime) * 0.0001);
-
-                // Создание объекта Data и добавление в список результатов
-                Data data = new Data();
-                data.setX(x);
-                data.setY(y);
-                data.setR(r);
-                data.setRes(checkout(x, y, r));
-                data.setCalculationTime(System.nanoTime() - startTime);
-                data.setCalculatedAt(LocalDateTime.from(LocalTime.now()));
-
-                List<Data> resultList = (List<Data>) getServletContext().getAttribute("resultList");
-                resultList.add(data);
-
-                // Обновление атрибута в контексте приложения
-                getServletContext().setAttribute("resultList", resultList);
-            } else {
-                // В случае невалидных данных, перенаправляем на страницу с ошибкой
-                getServletContext().setAttribute("error", "Невалидные данные");
-                request.getRequestDispatcher("/error.jsp").forward(request, response);
+            try {
+                x = Integer.parseInt(strX);
+                y = Double.parseDouble(strY);
+                r = Double.parseDouble(strR);
+            } catch (NumberFormatException | NullPointerException e) {
+                response.sendError(400);
+                return;
             }
+            final boolean result = checkout(x, y, r);
+            final long endExec = System.nanoTime();
+            final long executionTime = endExec - startExec;
+            final LocalDateTime executedAt = LocalDateTime.now();
+
+            final Data data = new Data();
+            data.setX(x);
+            data.setY(y);
+            data.setR(r);
+            data.setRes(result);
+            data.setCalculationTime(executionTime);
+            data.setCalculatedAt(executedAt);
+
+            synchronized (resultList) {
+                resultList.add(0, data);
+            }
+            renderView(response, ctx, data);
         } catch (Exception e) {
             getServletContext().setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
-    }
-
-    private boolean isValidX(int x) {
-        return x >= -5 && x <= 3;
-    }
-
-    private boolean isValidY(double y) {
-        return y >= -3 && y <= 5;
-    }
-
-    private boolean isValidR(double r) {
-        return validRValues.contains(r);
     }
 
     private boolean checkout(int x, double y, double r) {
@@ -144,19 +130,19 @@ public class AreaCheckServlet extends HttpServlet {
         final long execTime = end - start;
         final LocalDateTime execAt = LocalDateTime.now();
 
-        final Data data = new Data();
-        data.setX(dx);
-        data.setY(dy);
-        data.setR(dr);
-        data.setRes(res);
-        data.setCalculationTime(execTime);
-        data.setCalculatedAt(execAt);
+        final Data result = new Data();
+        result.setX(dx);
+        result.setY(dy);
+        result.setR(dr);
+        result.setRes(res);
+        result.setCalculationTime(execTime);
+        result.setCalculatedAt(execAt);
 
         synchronized (resultList) {
-            resultList.add(data);
+            resultList.add(result);
         }
 
-        renderView(resp, ctx, data);
+        renderView(resp, ctx, result);
     }
     public boolean checkSquare(double x, double y, double r) {
         return (x <= 0 && y >= 0 && Math.abs(x) <= r && y <= r);

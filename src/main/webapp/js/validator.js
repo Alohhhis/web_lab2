@@ -16,8 +16,8 @@ function send(x, y, r) {
             type: "GET",
             url: "ControllerServlet",
             async: false,
-            data: {"x": x, "y": y, "r": r},
-            success: function (data) {
+            result: {"x": x, "y": y, "r": r},
+            success: function (result) {
                 window.location.replace("./result.jsp")
             }, error: function (xhr, textStatus, err) {
                 showError(document.getElementById('buttons-div'), "readyState: " + xhr.readyState + "\n" +

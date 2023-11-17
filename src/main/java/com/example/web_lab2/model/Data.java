@@ -23,7 +23,7 @@ public class Data implements Serializable {
         return r;
     }
 
-    public boolean isRes() {
+    public boolean getRes() {
         return res;
     }
 
@@ -63,8 +63,8 @@ public class Data implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Data data = (Data) o;
-        return Double.compare(x, data.x) == 0 && Double.compare(y, data.y) == 0 && Double.compare(r, data.r) == 0 && res == data.res && calculationTime == data.calculationTime && Objects.equals(calculatedAt, data.calculatedAt);
+        Data result = (Data) o;
+        return Double.compare(x, result.x) == 0 && Double.compare(y, result.y) == 0 && Double.compare(r, result.r) == 0 && res == result.res && calculationTime == result.calculationTime && Objects.equals(calculatedAt, result.calculatedAt);
     }
 
     @Override
