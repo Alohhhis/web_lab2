@@ -11,11 +11,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
+
 import java.util.List;
-
-
-import static com.example.web_lab2.view.Result.renderView;
+import java.util.logging.Logger;
 
 
 @WebServlet(name = "AreaCheckServlet", value = "/check")
@@ -23,17 +21,16 @@ public class AreaCheckServlet extends HttpServlet {
     public List<Data> getResultList() {
         return resultList;
     }
-
     private List<Data> resultList;
     //private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
     //private final List<Double> validRValues = Arrays.asList(1.0, 1.5, 2.0, 2.5, 3.0);
+    private static final Logger LOGGER = Logger.getLogger(AreaCheckServlet.class.getName());
 
     @Override
     public void init() throws ServletException {
-        resultList = new LinkedList<>();
+        resultList = new ArrayList<>();
         getServletContext().setAttribute("resultList", resultList);
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -42,7 +39,13 @@ public class AreaCheckServlet extends HttpServlet {
             String strX = request.getParameter("x");
             String strY = request.getParameter("y");
             String strR = request.getParameter("r");
-
+            System.out.println("x: " + request.getParameter("x"));
+            System.out.println("y: " + request.getParameter("y"));
+            System.out.println("r: " + request.getParameter("r"));
+            LOGGER.info("Values set in AreaCheck: " + strR + strX + strY);
+            System.out.println("x: " + strX);
+            System.out.println("y: " + strY);
+            System.out.println("r: " + strR);
 
             // Парсинг значений
             int x = Integer.parseInt(strX);
@@ -72,8 +75,11 @@ public class AreaCheckServlet extends HttpServlet {
             synchronized (resultList) {
                 resultList.add(0, data);
             }
-            renderView(response, ctx, data);
+            LOGGER.info("Values set: " + data);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/result.jsp");
+            dispatcher.forward(request, response);
         } catch (Exception e) {
+            LOGGER.severe("Error: " + e.getMessage());
             getServletContext().setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/error.jsp").forward(request, response);
         }

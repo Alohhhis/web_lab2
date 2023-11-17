@@ -36,8 +36,8 @@
     </table>
 </div>
 <div class="blurred-container round-container fit-content-container margin">
-    <form id="forms" class="center" action="index.jsp">
-        <button>Вернуться на главную страницу</button>
+    <form id="forms" class="center" >
+        <button onclick="redirectToIndex()">Вернуться на главную страницу</button>
     </form>
 </div>
 </body>

@@ -5,6 +5,9 @@ document.getElementById('forms').addEventListener('submit', function (e) {
     let r = document.querySelectorAll('input[type="radio"]:checked')[0];
 
     if (validate(x, y, r)) {
+        console.log("x:", x.value);
+        console.log("y:", y.value);
+        console.log("r:", r.value);
         send(x.value, y.value, r.value);
     }
 });
@@ -14,9 +17,9 @@ document.getElementById('forms').addEventListener('submit', function (e) {
 function send(x, y, r) {
     $.ajax({
             type: "GET",
-            url: "ControllerServlet",
-            async: false,
-            result: {"x": x, "y": y, "r": r},
+        url: "ControllerServlet",
+        async: false,
+            data: {"x": x, "y": y, "r": r},
             success: function (result) {
                 window.location.replace("./result.jsp")
             }, error: function (xhr, textStatus, err) {
@@ -44,6 +47,10 @@ function showError(element, message) {
 }
 
 function validate(x, y, r) {
+    if (x == null || y == null || r == null) {
+        showError(null, "Необходимо выбрать значения X, Y и R");
+        return false;
+    }
     let replaceDot = val => val.replace(',','.');
     let y1 = replaceDot(y.value);
     if (r == null) {
