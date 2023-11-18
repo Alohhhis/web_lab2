@@ -14,8 +14,8 @@ document.getElementById('forms').addEventListener('submit', function (e) {
 function send(x, y, r) {
     $.ajax({
             type: "GET",
-        url: "ControllerServlet",
-        async: false,
+            url: "ControllerServlet",
+            async: false,
             data: {"x": x, "y": y, "r": r},
             success: function (result) {
                 window.location.replace("./result.jsp")
@@ -68,5 +68,3 @@ function validate(x, y, r) {
     }
     return true;
 }
-
-

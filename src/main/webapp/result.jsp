@@ -88,10 +88,10 @@
     <% } %>
     </tbody>
 </table>
-<button class="return-button" onclick="redirectToIndex()">Back to Index</button>
+<button class="return-button" onclick="redirectToIndex()">На главную</button>
 <% } else { %>
-<p>No results available.</p>
-<button class="return-button" onclick="redirectToIndex()">Back to Index</button>
+<p>Тут чёта не то (значения не те, надо заново попробовать)</p>
+<button class="return-button" onclick="redirectToIndex()">На главную</button>
 <% } %>
 
 </body>
