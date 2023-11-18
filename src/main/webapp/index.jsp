@@ -46,7 +46,7 @@
               <label for="y">Введите Y:</label> <br>
               <br>
               <input style="margin-bottom: 10px" type="text" name="y" class="y" id="y"
-                     placeholder="[-3..5]" autocomplete="off" maxlength="10" required><br>
+                     placeholder="[-3..5]" autocomplete="off" maxlength="6" required><br>
 
             </div>
             <br>
@@ -88,7 +88,7 @@
     </section>
 
     </div>
-    <div id="result-table-container" class="blured-container margin">
+    <div id="result-table-container">
       <table id="result-table">
         <thead>
         <tr>

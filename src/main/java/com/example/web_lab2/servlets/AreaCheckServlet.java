@@ -86,7 +86,7 @@ public class AreaCheckServlet extends HttpServlet {
         boolean insideRectangle = (x <= 0 && x >= -r && y <= 0 && y >= -r/2);
 
         // Проверка внутри треугольника
-        boolean insideTriangle = (x >= 0 && y <= 0 && x + 2 * y >= 0 && x*x + y*y <= (r/2)*(r/2));
+        boolean insideTriangle = (x >= 0 && y <= 0 && x <= r && y >= -r/2);
 
         return insideCircle || insideRectangle || insideTriangle;
     }
