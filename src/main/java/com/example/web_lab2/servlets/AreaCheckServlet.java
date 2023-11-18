@@ -19,8 +19,6 @@ public class AreaCheckServlet extends HttpServlet {
         return resultList;
     }
     private List<Data> resultList;
-    //private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-    //private final List<Double> validRValues = Arrays.asList(1.0, 1.5, 2.0, 2.5, 3.0);
     private static final Logger LOGGER = Logger.getLogger(AreaCheckServlet.class.getName());
 
     @Override
@@ -92,7 +90,5 @@ public class AreaCheckServlet extends HttpServlet {
 
         return insideCircle || insideRectangle || insideTriangle;
     }
-
-
 }
 

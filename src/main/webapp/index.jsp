@@ -116,23 +116,7 @@
     </div>
     <script>const ctx = "${pageContext.request.contextPath}";</script>
   </main>
-  <script type="text/javascript">
-    var resultList = [];
-
-    <c:forEach var="result" items="${resultList}">
-    var item = {
-      x: ${result.x},
-      y: ${result.y},
-      r: ${result.r},
-      result: ${result.res},
-      calculationTime: ${result.calculationTime},
-      calculatedAt: "${result.calculatedAt}"
-    };
-    resultList.push(item);
-    </c:forEach>
-  </script>
 <script src="js/GraphDrawer.js"></script>
 <script src="js/validator.js"></script>
-
 </body>
 </html>

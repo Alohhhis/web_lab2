@@ -11,9 +11,6 @@ document.getElementById('forms').addEventListener('submit', function (e) {
         send(x.value, y.value, r.value);
     }
 });
-
-
-
 function send(x, y, r) {
     $.ajax({
             type: "GET",

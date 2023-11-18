@@ -18,7 +18,6 @@ public class ControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Entering ControllerServlet doGet method.");
 
-        // Валидация точки
         String x = request.getParameter("x");
         String y = request.getParameter("y");
         String r = request.getParameter("r");
@@ -28,11 +27,9 @@ public class ControllerServlet extends HttpServlet {
         String forwardPath;
         try {
             if (x != null && y != null && r != null && validateCoordinates(Double.parseDouble(x), Double.parseDouble(y), Double.parseDouble(r))) {
-                // Если параметры валидны, перенаправляем на AreaCheckServlet
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/check");
                 dispatcher.forward(request, response);
             } else {
-                // Если параметры не валидны, перенаправляем на index.jsp
                 forwardPath = this.getServletContext().getContextPath() + "/index.jsp";
                 response.sendRedirect(forwardPath);
             }

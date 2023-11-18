@@ -58,7 +58,6 @@ window.addEventListener("load", () =>{
         ctx.fill();
         ctx.closePath();
 
-        // second lab graph
         // график 1 четверть пуста
 
         //x axis
@@ -187,19 +186,6 @@ window.addEventListener("load", () =>{
         ctx.fillText("R", centerX + side/3 * (r/k) - 5 , centerY - 10);
         ctx.closePath();
     }
-
-    function isPointInsideGraph(x, y, r) {
-        // Проверка внутри круга
-        const insideCircle = (x >= 0 && y >= 0 && Math.sqrt(x*x + y*y) <= r);
-
-        // Проверка внутри прямоугольника
-        const insideRectangle = (x <= 0 && x >= -r && y <= 0 && y >= -r/2);
-
-        // Проверка внутри треугольника
-        const insideTriangle = (x >= 0 && y <= 0 && x + 2 * y >= 0 && x*x + y*y <= (r/2)*(r/2));
-
-        return insideCircle || insideRectangle || insideTriangle;
-    }
         function clicked(event) {
         let radiusInput = document.getElementsByClassName("r");
         for (let i = 0; i < radiusInput.length; i++) {
@@ -222,10 +208,6 @@ window.addEventListener("load", () =>{
         let clientX = (event.clientX - rect.left - 200) / (side / 3) * r;
         let clientY = ((-1) * (event.clientY - rect.top - 200)) / (side / 3) * r;
 
-        // Создаем объект данных для отправки
-
-
-        // Отправляем данные методом AJAX
         $.ajax({
             type: "GET",
             url: "ControllerServlet",
