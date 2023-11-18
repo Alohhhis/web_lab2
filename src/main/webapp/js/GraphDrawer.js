@@ -7,6 +7,7 @@ window.addEventListener("load", () =>{
     const centerY = canvas.height / 2;
     ctx.lineWidth = 2;
     const k = 4;
+    const elements = document.getElementsByClassName("r");
     ctx.strokeRect(centerX - side / 2, centerY - side / 2, side, side);
     drawGraph(r);
 
@@ -29,6 +30,13 @@ window.addEventListener("load", () =>{
         }
 
     })
+    for (const element of elements) {
+        element.addEventListener('change', function (){
+            let r = element.value;
+            ctx.clearRect(2, 2, side / 1.01, side / 1.01);
+            drawGraph(r);
+        });
+    }
     function drawGraph(r){
         // график 1 четверть
         ctx.fillStyle = "#6ba8d3";
