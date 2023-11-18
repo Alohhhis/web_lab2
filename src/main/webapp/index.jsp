@@ -10,6 +10,7 @@
    <link rel="stylesheet" href="styles/index.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+
 </head>
 <body>
   <header>
@@ -46,7 +47,7 @@
               <br>
               <input style="margin-bottom: 10px" type="text" name="y" class="y" id="y"
                      placeholder="[-3..5]" autocomplete="off" maxlength="10" required><br>
-              <span id="note_y">*Происходит округление значений до 2 знаков после запятой</span>
+
             </div>
             <br>
 

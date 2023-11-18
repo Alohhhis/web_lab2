@@ -1,76 +1,37 @@
-window.addEventListener("load", () => {
+window.addEventListener("load", () =>{
     const canvas = document.querySelector("#canvas");
-    let radiusInput = document.querySelector(".r");
-    let r = radiusInput.value;
     const ctx = canvas.getContext("2d");
+    let r = 4;
     const side = canvas.width;
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     ctx.lineWidth = 2;
-    const k = 2;
-    const MIN_X = -5;
-    const MAX_X = 3;
-    const MAX_Y = 5
-    const MIN_Y = -5;
-    const elements = document.getElementsByClassName("r");
+    const k = 4;
     ctx.strokeRect(centerX - side / 2, centerY - side / 2, side, side);
-
     drawGraph(r);
 
+
     canvas.addEventListener("click", function (event) {
-        let x = event.offsetX;
-        let y = event.offsetY;
 
-        let rect = canvas.getBoundingClientRect();
-        let clientX = (event.clientX - rect.left - 200) / (side / 3) * r * k;
-        let clientY = ((-1) * (event.clientY - rect.top - 200)) / (side / 3) * r * k;
+        let radioChosen = false;
 
-        ctx.fillStyle = "#6ba8d3";
-        ctx.beginPath();
-        ctx.arc(x,y,4,0,Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-        ctx.closePath();
-
-        console.log("Coordinate x: " + clientX,
-            "Coordinate y: " + clientY);
-
-        if (isPointInsideGraph(clientX, clientY, r)) {
-            // Отправка AJAX-запроса
-            $.ajax({
-                type: "GET",
-                url: "/ControllerServlet",
-                async: false,
-                data: {"x": clientX, "y": clientY, "r": r},
-                success: function (data) {
-                    window.location.replace('./result.jsp');
-                },
-                error: function (xhr, textStatus, err) {
-                    showError(document.getElementById('buttons-table'), "readyState: " + xhr.readyState + "\n" +
-                        "responseText: " + xhr.responseText + "\n" +
-                        "status: " + xhr.status + "\n" +
-                        "text status: " + textStatus + "\n" +
-                        "error: " + err);
-                }
-            });
-        } else {
-            // Вывод сообщения, что точка не попала на поле
-            alert('Точка не попала на поле');
+        let radio = document.getElementsByClassName("r");
+        for (let i = 0; i < radio.length; i++){
+            if (radio[i].checked){
+                radioChosen = true;
+            }
         }
+        if (radioChosen) {
+            clicked(event);
+        }
+        else {
+            showError(document.getElementById('buttons-div'),"Выбери радиус, потом тыкай");
+        }
+
     })
-
-
-    for (const element of elements) {
-        element.addEventListener('change', function (){
-            let r = element.value;
-            ctx.clearRect(2, 2, side / 1.01, side / 1.01);
-            drawGraph(r);
-        });
-    }
-
     function drawGraph(r){
         // график 1 четверть
-        ctx.fillStyle = "#4f9947";
+        ctx.fillStyle = "#6ba8d3";
         const radius = side / 3 * (r / k);
         const startAngle = Math.PI * 1.5;
         const endAngle = Math.PI * 2;
@@ -239,7 +200,47 @@ window.addEventListener("load", () => {
 
         return insideCircle || insideRectangle || insideTriangle;
     }
+        function clicked(event) {
+        let radiusInput = document.getElementsByClassName("r");
+        for (let i = 0; i < radiusInput.length; i++) {
+            if (radiusInput[i].checked === true) {
+                if (radiusInput[i].value > r / 10) {
+                    r = radiusInput[i].value;
+                }
+            }
+        }
+        let x = event.offsetX;
+        let y = event.offsetY;
+
+        ctx.fillStyle = "red";
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+        let rect = canvas.getBoundingClientRect();
+        let clientX = (event.clientX - rect.left - 200) / (side / 3) * r;
+        let clientY = ((-1) * (event.clientY - rect.top - 200)) / (side / 3) * r;
+
+        // Создаем объект данных для отправки
 
 
+        // Отправляем данные методом AJAX
+        $.ajax({
+            type: "GET",
+            url: "ControllerServlet",
+            data: {"x": clientX.toString(), "y": clientY.toString(), "r": r.toString()},
+            success: function (result) {
+                window.location.replace('./result.jsp');
+            },
+            error: function (xhr, textStatus, err) {
+                showError(document.getElementById('buttons-div'), "readyState: " + xhr.readyState + "\n" +
+                    "responseText: " + xhr.responseText + "\n" +
+                    "status: " + xhr.status + "\n" +
+                    "text status: " + textStatus + "\n" +
+                    "error: " + err);
+            }
+        });
+    }
 })
 

@@ -1,69 +1,116 @@
-/* index.css */
-
 body {
-    background-color: #1f1f1f; /* Цвет фона */
-    color: #fff; /* Цвет текста */
-    font-family: monospace; /* Шрифт */
+    background-color: #282c34;
+    color: #abb2bf;
+    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
 }
 
 header {
-    background-color: #333; /* Цвет заголовка */
-    padding: 10px;
     text-align: center;
+    background-color: #282c34;
+    color: #61dafb;
+    padding: 20px;
 }
 
 main {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     padding: 20px;
 }
 
-section {
-    background-color: #333; /* Цвет фона блоков */
-    border-radius: 10px; /* Закругленные края */
+#result-input{
+    background-color: #282c34;
+    color: #abb2bf;
     padding: 20px;
-    width: 48%; /* Ширина блоков */
+    border-radius: 10px;
+    margin-right: 20px;
 }
 
-h2 {
-    color: #6ad341; /* Цвет заголовков */
-    font-size: 24px;
-}
-
-input[type="text"] {
-    background-color: #1f1f1f; /* Цвет поля ввода */
-    color: #ffffff; /* Цвет текста в поле ввода */
-    border: 2px solid #6ad341; /* Цвет границы */
-    border-radius: 5px; /* Закругленные края поля ввода */
-    padding: 8px;
-    font-size: 16px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-}
-
-#graph-canvas {
-    background-color: #333; /* Цвет фона канваса */
-    border: 2px solid #6ad341; /* Цвет границы канваса */
-    border-radius: 10px; /* Закругленные края канваса */
-    width: 100%; /* Растягиваем канвас на всю ширину блока */
-    height: 400px;
+#result-table-container {
+    background-color: #282c34;
+    color: #abb2bf;
+    padding: 20px;
+    border-radius: 10px;
     margin-top: 20px;
 }
 
+#result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#result-table th, #result-table td {
+    border: 1px solid #abb2bf;
+    padding: 10px;
+    text-align: center;
+}
+
+#result-table th {
+    background-color: #282c34;
+    color: #61dafb;
+}
+
+.input-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.input_values {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #abb2bf;
+}
+
+#x_select select,
+.y {
+    padding: 10px;
+    border: 1px solid #61dafb;
+    border-radius: 5px;
+    background-color: #1d1f21;
+    color: #abb2bf;
+}
+
+#note_y {
+    font-size: 12px;
+    color: #abb2bf;
+}
+
+.r {
+    margin-right: 5px;
+}
+
+.submit,
+.reset {
+    padding: 10px;
+    background-color: #61dafb;
+    color: #282c34;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit:hover,
+.reset:hover {
+    background-color: #abb2bf;
+}
+/* Скрываем стандартные радиокнопки */
 .input_values input[type="radio"] {
     display: none;
 }
 
+/* Стили для лейблов радиокнопок */
 .input_values label.r {
     display: inline-block;
     width: 30px;
     height: 30px;
-    color: #3b3b48;
-    background-color: #6ad341;
-    border: 2px solid #6ad341;
+    color: #abb2bf; /* Цвет текста */
+    background-color: #282c34; /* Фон кнопки */
+    border: 2px solid #61dafb; /* Цвет рамки */
     border-radius: 10%;
     text-align: center;
     line-height: 20px;
@@ -72,51 +119,17 @@ input[type="text"] {
     transition: background-color 0.3s, transform 0.3s;
 }
 
+/* Стиль при наведении на радиокнопку */
 .input_values label.r:hover {
-    background-color: #6ad341;
-    color: #2b2b36;
+    background-color: #1d1f21; /* Новый цвет фона при наведении */
+    color: #61dafb; /* Новый цвет текста при наведении */
     font-weight: bold;
 }
 
-.input_values input[type="radio"]:checked + label {
-    background-color: #6ad341;
-    color: #2b2b36;
-    transform: scale(1.1);
+/* Стиль при выборе радиокнопки */
+.input_values input[type="radio"]:checked + label.r {
+    background-color: #1d1f21; /* Новый цвет фона при выборе */
+    color: #61dafb; /* Новый цвет текста при выборе */
+    transform: scale(1.1); /* Увеличиваем размер при выборе */
 }
 
-.submit:hover {
-    background-color: #c0f834;
-    color: #1f2125;
-    transition: .5s;
-    border: 1px solid #103b31;
-}
-
-.reset:hover {
-    background-color: #fe6262;
-    color: #1f2125;
-    transition: .5s;
-    border: 1px solid #103b31;
-}
-
-button {
-    text-align: center;
-    padding: 10px 25px;
-    margin: 25px 15px 15px 25px;
-    border: 2px solid #34c7a5;
-    border-radius: 5px;
-    background-color: #1f2125;
-    color: #c5b91f;
-}
-
-#result-table-container {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.margin {
-    margin: 20px 0;
-}
-
-.blured-container {
-    filter: blur(2px);
-}

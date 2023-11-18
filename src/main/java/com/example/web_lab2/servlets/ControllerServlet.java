@@ -27,7 +27,7 @@ public class ControllerServlet extends HttpServlet {
         LOGGER.info("Values in Controller set: " + x + y + r);
         String forwardPath;
         try {
-            if (x != null && y != null && r != null && validateCoordinates(Integer.parseInt(x), Double.parseDouble(y), Double.parseDouble(r))) {
+            if (x != null && y != null && r != null && validateCoordinates(Double.parseDouble(x), Double.parseDouble(y), Double.parseDouble(r))) {
                 // Если параметры валидны, перенаправляем на AreaCheckServlet
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/check");
                 dispatcher.forward(request, response);
@@ -41,7 +41,7 @@ public class ControllerServlet extends HttpServlet {
         }
     }
 
-    private boolean validateCoordinates(int x, double y, double r) {
+    private boolean validateCoordinates(double x, double y, double r) {
         boolean validX = -5 <= x && x <= 5;
         boolean validY = -4 <= y && y <= 4;
         boolean validR = false;

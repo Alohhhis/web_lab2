@@ -91,6 +91,7 @@
 <button class="return-button" onclick="redirectToIndex()">Back to Index</button>
 <% } else { %>
 <p>No results available.</p>
+<button class="return-button" onclick="redirectToIndex()">Back to Index</button>
 <% } %>
 
 </body>
