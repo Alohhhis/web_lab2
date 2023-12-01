@@ -41,17 +41,17 @@ public class ControllerServlet extends HttpServlet {
 
     private double parseAndValidateDouble(String value, double minValue, double maxValue) throws ValidationException {
         if (value == null) {
-            throw new ValidationException("Value cannot be null.");
+            throw new ValidationException("Значение не должно быть null.");
         }
 
         try {
             double parsedValue = Double.parseDouble(value);
             if (parsedValue < minValue || parsedValue > maxValue) {
-                throw new ValidationException("Value must be in the range [" + minValue + ", " + maxValue + "].");
+                throw new ValidationException("Значение должно быть в границах [" + minValue + ", " + maxValue + "].");
             }
             return parsedValue;
         } catch (NumberFormatException e) {
-            throw new ValidationException("Invalid numeric format.");
+            throw new ValidationException("Это чё вообще. Нужна чиселка");
         }
     }
 
