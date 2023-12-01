@@ -28,6 +28,16 @@
     <servlet-name>AreaCheckServlet</servlet-name>
     <url-pattern>/check</url-pattern>
   </servlet-mapping>
+  
+  <filter>
+    <filter-name>LoggingFilter</filter-name>
+    <filter-class>com.example.web_lab2.servlets.LoggingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoggingFilter</filter-name>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/ControllerServlet</url-pattern>
+  </filter-mapping>
 
 
 

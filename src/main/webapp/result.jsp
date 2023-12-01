@@ -60,7 +60,6 @@
 <h2>Result Page</h2>
 
 <%
-    // Извлекаем список данных из контекста приложения
     List<Data> dataList = (List<Data>) application.getAttribute("dataList");
 %>
 
