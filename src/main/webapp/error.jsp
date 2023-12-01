@@ -13,9 +13,8 @@
 <body>
 <div class="header">
   <h1>
-    ААААААААААААААААААААААААААААаааа
+    Ошибка
   </h1>
-
 </div>
 <h2>Error message: ${error}</h2>
 <button class="return-button" onclick="redirectToIndex()">Вернуться на главную</button>

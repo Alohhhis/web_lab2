@@ -50,16 +50,9 @@ function validate(x, y, r) {
     }
     let replaceDot = val => val.replace(',','.');
     let y1 = replaceDot(y.value);
-    if (r == null) {
-        showError(r, "Необходимо выбрать значение R");
-        return false;
-    }
-    if (y1 == null || y1==="") {
+
+    if (y1==="") {
         showError(y, "Необходимо выбрать значение Y");
-        return false;
-    }
-    if (x==null){
-        showError(x,"Необходимо выбрать значение X");
         return false;
     }
     if (y1< -3 || y1 > 5) {

@@ -9,54 +9,6 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
 import java.util.logging.Logger;
-/*
-@WebServlet(name = "ControllerServlet", value = "/ControllerServlet")
-public class ControllerServlet extends HttpServlet {
-    double[] rArray = {1, 1.5, 2, 2.5, 3};
-    private static final Logger LOGGER = Logger.getLogger(AreaCheckServlet.class.getName());
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String x = request.getParameter("x");
-        String y = request.getParameter("y");
-        String r = request.getParameter("r");
-
-        LOGGER.info("Values in Controller set: x=" + x + ", y=" + y + ", r=" + r);
-
-        //TODO Убрать лишние логи
-        String forwardPath;
-        try {
-            if (x != null && y != null && r != null && validateCoordinates(Double.parseDouble(x), Double.parseDouble(y), Double.parseDouble(r))) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/check");
-                dispatcher.forward(request, response);
-            } else {
-                forwardPath = this.getServletContext().getContextPath() + "/index.jsp";
-                response.sendRedirect(forwardPath);
-            }
-        } catch (Exception e) {
-            getServletContext().setAttribute("error", e.getMessage());
-            request.getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
-            LOGGER.severe("Error: " + e.getMessage());
-        }
-    }
-    //TODO Ловить ошибки нормально
-
-    private boolean validateCoordinates(double x, double y, double r) {
-        boolean validX = -5 <= x && x <= 3;
-        boolean validY = -3 <= y && y <= 5;
-        boolean validR = false;
-
-        for (int i = 0; i < rArray.length; i++) {
-            if (rArray[i] == r) {
-                validR = true;
-                break;
-            }
-        }
-        return validX && validY && validR;
-    }
-    //TODO Валидация на чиселки буковки шнягу
-}*/
 @WebServlet(name = "ControllerServlet", value = "/ControllerServlet")
 public class ControllerServlet extends HttpServlet {
     private static final double[] VALID_R_VALUES = {1, 1.5, 2, 2.5, 3};

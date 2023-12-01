@@ -24,7 +24,6 @@ public class AreaCheckServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        // Инициализация списка данных при старте приложения
         List<Data> dataList = new ArrayList<>();
         getServletContext().setAttribute("dataList", dataList);
     }
@@ -32,29 +31,24 @@ public class AreaCheckServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Получаем параметры запроса
             double x = Double.parseDouble(request.getParameter("x"));
             double y = Double.parseDouble(request.getParameter("y"));
             double r = Double.parseDouble(request.getParameter("r"));
 
             LOGGER.info("Received coordinates: x=" + x + ", y=" + y + ", r=" + r);
 
-            // Выполняем проверку
             boolean result = checkout(x, y, r);
 
-            // Засекаем время выполнения
             long startExec = System.nanoTime();
             long endExec = System.nanoTime();
             long executionTime = endExec - startExec;
 
-            // Получаем текущую дату и время
             LocalDateTime executedAt = LocalDateTime.now();
             String formattedExecutedAt = executedAt.format(formatter);
 
             double roundedX = Math.round(x * 100.0) / 100.0;
             double roundedY = Math.round(y * 100.0) / 100.0;
 
-            // Создаем объект Data и устанавливаем значения
             Data data = new Data();
             data.setX(roundedX);
             data.setY(roundedY);
@@ -63,34 +57,24 @@ public class AreaCheckServlet extends HttpServlet {
             data.setCalculationTime(executionTime);
             data.setCalculatedAt(formattedExecutedAt);
 
-            // Получаем контекст приложения
             ServletContext application = getServletContext();
 
-            // Получаем текущий список данных из контекста приложения
             List<Data> dataList = (List<Data>) application.getAttribute("dataList");
 
-            // Если список еще не создан, создаем новый
             if (dataList == null) {
                 dataList = new ArrayList<>();
             }
 
-            // Добавляем новый объект Data в список
             dataList.add(0, data);
 
-            // Сохраняем обновленный список в контексте приложения
             application.setAttribute("dataList", dataList);
 
             LOGGER.info("Values set: " + data);
 
-            // Переходим к отображению результатов
             request.getRequestDispatcher("/result.jsp").forward(request, response);
         } catch (Exception e) {
             LOGGER.severe("Error: " + e.getMessage());
-
-            // Сохраняем сообщение об ошибке в контексте приложения
             getServletContext().setAttribute("error", e.getMessage());
-
-            // Переходим к отображению страницы ошибки
             request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
     }
