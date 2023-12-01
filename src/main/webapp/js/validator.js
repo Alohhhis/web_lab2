@@ -40,7 +40,7 @@ function showError(element, message) {
     element.parentNode.insertBefore(errorElement, element.nextSibling);
     setTimeout(function () {
         errorElement.remove();
-    }, 1500);
+    }, 2000);
 }
 
 function validate(x, y, r) {
