@@ -60,10 +60,11 @@
 <h2>Result Page</h2>
 
 <%
-    List<Data> resultList = (List<Data>) request.getServletContext().getAttribute("resultList");
+    // Извлекаем список данных из контекста приложения
+    List<Data> dataList = (List<Data>) application.getAttribute("dataList");
 %>
 
-<% if (resultList != null && !resultList.isEmpty()) { %>
+<% if (dataList != null && !dataList.isEmpty()) { %>
 <table>
     <thead>
     <tr>
@@ -76,7 +77,7 @@
     </tr>
     </thead>
     <tbody>
-    <% for (Data data : resultList) { %>
+    <% for (Data data : dataList) { %>
     <tr>
         <td><%= data.getX() %></td>
         <td><%= data.getY() %></td>

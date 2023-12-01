@@ -10,7 +10,7 @@ public class Data implements Serializable {
     private double r;
     private boolean res;
     private long calculationTime;
-    private LocalDateTime calculatedAt;
+    private String calculatedAt;
     public double getX() {
         return x;
     }
@@ -47,7 +47,7 @@ public class Data implements Serializable {
         this.calculationTime = calculationTime;
     }
 
-    public void setCalculatedAt(LocalDateTime calculatedAt) {
+    public void setCalculatedAt(String calculatedAt) {
         this.calculatedAt = calculatedAt;
     }
 
@@ -55,7 +55,7 @@ public class Data implements Serializable {
         return calculationTime;
     }
 
-    public LocalDateTime getCalculatedAt() {
+    public String getCalculatedAt() {
         return calculatedAt;
     }
 

@@ -86,8 +86,8 @@
         <canvas class="canvas" id="canvas" width="400" height="400"> </canvas>
       </div>
     </section>
-
     </div>
+
     <div id="result-table-container">
       <table id="result-table">
         <thead>
@@ -101,7 +101,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="result" items="${resultList}">
+        <c:forEach var="result" items="${dataList}">
           <tr>
             <td>${result.x}</td>
             <td>${result.y}</td>

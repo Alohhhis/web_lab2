@@ -194,7 +194,7 @@ window.addEventListener("load", () =>{
         ctx.fillText("R", centerX + side/3 * (r/k) - 5 , centerY - 10);
         ctx.closePath();
     }
-        function clicked(event) {
+    function clicked(event) {
         let radiusInput = document.getElementsByClassName("r");
         for (let i = 0; i < radiusInput.length; i++) {
             if (radiusInput[i].checked === true) {
@@ -216,6 +216,10 @@ window.addEventListener("load", () =>{
         let clientX = (event.clientX - rect.left - 200) / (side / 3) * r;
         let clientY = ((-1) * (event.clientY - rect.top - 200)) / (side / 3) * r;
 
+        console.log("Мышь: ", event.clientX, event.clientY);
+        console.log("Canvas: ", rect.left, rect.top);
+        console.log("Преобразованные координаты: ", clientX, clientY);
+
         $.ajax({
             type: "GET",
             url: "ControllerServlet",
@@ -233,4 +237,3 @@ window.addEventListener("load", () =>{
         });
     }
 })
-
