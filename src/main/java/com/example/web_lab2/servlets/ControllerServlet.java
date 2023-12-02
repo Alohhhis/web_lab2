@@ -47,11 +47,11 @@ public class ControllerServlet extends HttpServlet {
         try {
             double parsedValue = Double.parseDouble(value);
             if (parsedValue < minValue || parsedValue > maxValue) {
-                throw new ValidationException("Значение должно быть в границах [" + minValue + ", " + maxValue + "].");
+                throw new ValidationException("The value must be within the limits [" + minValue + ", " + maxValue + "].");
             }
             return parsedValue;
         } catch (NumberFormatException e) {
-            throw new ValidationException("Это чё вообще. Нужна чиселка");
+            throw new ValidationException("Need a number");
         }
     }
 
